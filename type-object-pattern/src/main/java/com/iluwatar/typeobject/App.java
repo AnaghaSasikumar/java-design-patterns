@@ -58,7 +58,7 @@ public class App {
     long start = System.currentTimeMillis();
     long end = System.currentTimeMillis();
     int round = 0;
-    while ((pointsWon < toWin) && (end - start < givenTime)) {      
+    while (pointsWon < toWin && end - start < givenTime) {      
       round++;
       CellPool pool = new CellPool(numOfRows * numOfRows + 5);
       CandyGame cg = new CandyGame(numOfRows, pool);
