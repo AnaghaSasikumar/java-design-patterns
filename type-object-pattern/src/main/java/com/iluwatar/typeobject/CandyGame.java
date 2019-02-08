@@ -64,9 +64,9 @@ public class CandyGame {
         String candyName = cells[i][j].candy.name;
         if (candyName.length() < 20) {
           int totalSpaces = 20 - candyName.length();
-          System.out.print(numOfSpaces(totalSpaces/2) + cells[i][j].candy.name + numOfSpaces(totalSpaces - totalSpaces/2) + "|");
-        }
-        else {
+          System.out.print(numOfSpaces(totalSpaces / 2) + cells[i][j].candy.name
+              + numOfSpaces(totalSpaces - totalSpaces / 2) + "|");
+        } else {
           System.out.print(candyName + "|");
         }
       }
@@ -75,29 +75,29 @@ public class CandyGame {
     System.out.println("");
   }
   
-  ArrayList<Cell> adjacentCells(int yIndex, int xIndex){
-	  ArrayList<Cell> adjacent = new ArrayList<Cell>();
-	  if (yIndex == 0) {
-	    adjacent.add(this.cells[1][xIndex]);
-	  }
-	  if (xIndex == 0) {
-	    adjacent.add(this.cells[yIndex][1]);
-	  }
-	  if (yIndex == cells.length-1) {
-	    adjacent.add(this.cells[cells.length-2][xIndex]);
-	  }
-	  if (xIndex == cells.length-1) {
-	    adjacent.add(this.cells[yIndex][cells.length-2]);
-	  }
-	  if (yIndex > 0 && yIndex < cells.length - 1) {
-        adjacent.add(this.cells[yIndex-1][xIndex]);
-        adjacent.add(this.cells[yIndex+1][xIndex]);
-	  }
-	  if (xIndex > 0 && xIndex < cells.length - 1) {
-        adjacent.add(this.cells[yIndex][xIndex-1]);
-        adjacent.add(this.cells[yIndex][xIndex+1]);
-	  }
-	  return adjacent;
+  ArrayList<Cell> adjacentCells(int yIndex, int xIndex) {
+    ArrayList<Cell> adjacent = new ArrayList<Cell>();
+    if (yIndex == 0) {
+      adjacent.add(this.cells[1][xIndex]);
+    }
+    if (xIndex == 0) {
+      adjacent.add(this.cells[yIndex][1]);
+    }
+    if (yIndex == cells.length - 1) {
+      adjacent.add(this.cells[cells.length - 2][xIndex]);
+    }
+    if (xIndex == cells.length - 1) {
+      adjacent.add(this.cells[yIndex][cells.length - 2]);
+    }
+    if (yIndex > 0 && yIndex < cells.length - 1) {
+      adjacent.add(this.cells[yIndex - 1][xIndex]);
+      adjacent.add(this.cells[yIndex + 1][xIndex]);
+    }
+    if (xIndex > 0 && xIndex < cells.length - 1) {
+      adjacent.add(this.cells[yIndex][xIndex - 1]);
+      adjacent.add(this.cells[yIndex][xIndex + 1]);
+    }
+    return adjacent;
   }
    
   boolean continueRound() {
@@ -130,42 +130,42 @@ public class CandyGame {
   void round(int timeSoFar, int totalTime) {
     long start = System.currentTimeMillis();
     long end = System.currentTimeMillis();
-	while (end - start + timeSoFar < totalTime && continueRound()) {
-	  for (int i = 0; i < this.cells.length; i++) {
-	    int points = 0;
-	    int j = this.cells.length - 1;
-	    while (this.cells[j][i].candy.getType().equals(Type.rewardFruit)) {
-	      points = this.cells[j][i].candy.getPoints();
-	      this.cells[j][i].crush(pool, this.cells);
-	      handleChange(points);
-	    }
-	  }
-	  for (int i = 0; i < this.cells.length; i++) {
-		int j = cells.length-1;
-		int points = 0;
-	    while (j > 0) { 
-	      points = this.cells[j][i].interact(this.cells[j-1][i], this.pool, this.cells);
-	      if (points != 0) {  
-	        handleChange(points);
-	      } else {
-	        j = j-1;
-	      }
-	    }
-	  }
-	  for (int i = 0; i < this.cells.length; i++) {
-	    int j = 0; 	    
-	    int points = 0;
-	    while (j < cells.length - 1) {       
-	      points = this.cells[i][j].interact(this.cells[i][j+1], this.pool, this.cells);
-	      if (points != 0) {
-	        handleChange(points);
-	      } else {
-	        j = j + 1;
-	      }
-	    }
-	  }
-	  end = System.currentTimeMillis();
-	}
+    while (end - start + timeSoFar < totalTime && continueRound()) {
+      for (int i = 0; i < this.cells.length; i++) {
+        int points = 0;
+        int j = this.cells.length - 1;
+        while (this.cells[j][i].candy.getType().equals(Type.rewardFruit)) {
+          points = this.cells[j][i].candy.getPoints();
+          this.cells[j][i].crush(pool, this.cells);
+          handleChange(points);
+        }
+      }
+      for (int i = 0; i < this.cells.length; i++) {
+        int j = cells.length - 1;
+        int points = 0;
+        while (j > 0) { 
+          points = this.cells[j][i].interact(this.cells[j - 1][i], this.pool, this.cells);
+          if (points != 0) {  
+            handleChange(points);
+          } else {
+            j = j - 1;
+          }
+        }
+      }
+      for (int i = 0; i < this.cells.length; i++) {
+        int j = 0;
+        int points = 0;
+        while (j < cells.length - 1) {       
+          points = this.cells[i][j].interact(this.cells[i][j + 1], this.pool, this.cells);
+          if (points != 0) {
+            handleChange(points);
+          } else {
+            j = j + 1;
+          }
+        }
+      }
+      end = System.currentTimeMillis();
+    }
   }
  
 }

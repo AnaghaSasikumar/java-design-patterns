@@ -36,14 +36,14 @@ import com.iluwatar.typeobject.Candy.Type;
  */
 
 class CandyGameTest {
-	
+
   @Test
   void adjacentCellsTest() throws FileNotFoundException, IOException, ParseException {
     CandyGame cg = new CandyGame(3,new CellPool(9));
     ArrayList<Cell> arr1 = cg.adjacentCells(0, 0);
     ArrayList<Cell> arr2 = cg.adjacentCells(1, 2);
     ArrayList<Cell> arr3 = cg.adjacentCells(1, 1);
-    assertTrue(arr1.size()==2 && arr2.size()==3 && arr3.size()==4);
+    assertTrue(arr1.size() == 2 && arr2.size() == 3 && arr3.size() == 4);
   }
 
   @Test

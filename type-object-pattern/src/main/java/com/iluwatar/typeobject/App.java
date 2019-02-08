@@ -46,17 +46,21 @@ import org.json.simple.parser.ParseException;
 
 public class App {
 
+  /**
+   * Program entry point.
+   * @param args command line args
+   */
   public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
-	int givenTime = 50; //50ms
-	int toWin = 500; //points
-	int pointsWon = 0;
-	int numOfRows = 3;
-	long start = System.currentTimeMillis();
+    int givenTime = 50; //50ms
+    int toWin = 500; //points
+    int pointsWon = 0;
+    int numOfRows = 3;
+    long start = System.currentTimeMillis();
     long end = System.currentTimeMillis();
     int round = 0;
     while ((pointsWon < toWin) && (end - start < givenTime)) {      
       round++;
-      CellPool pool = new CellPool(numOfRows*numOfRows + 5);
+      CellPool pool = new CellPool(numOfRows * numOfRows + 5);
       CandyGame cg = new CandyGame(numOfRows, pool);
       if (round > 1) {
         System.out.println("Refreshing..");

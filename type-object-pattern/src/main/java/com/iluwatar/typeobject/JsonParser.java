@@ -43,30 +43,31 @@ import com.iluwatar.typeobject.Candy.Type;
 public class JsonParser {
   Hashtable<String, Candy> candies;
   
-  JsonParser(){
-	  this.candies = new Hashtable<String, Candy>();
+  JsonParser() {
+    this.candies = new Hashtable<String, Candy>();
   }
-	
+
   void parse() throws FileNotFoundException, IOException, ParseException {
-	JSONParser parser = new JSONParser();
-	JSONObject jo = (JSONObject) parser.parse(new FileReader(new File("").getAbsolutePath() + "\\src\\main\\java\\com\\iluwatar\\typeobject\\candy.json"));
-	JSONArray a = (JSONArray) jo.get("candies");
-	for (Object o : a) {
-	  JSONObject candy = (JSONObject) o;
-	  String name = (String) candy.get("name");
-	  String parentName = (String) candy.get("parent");
-	  String t = (String) candy.get("type");
-	  Type type = null;
-	  if (t.equals("rewardFruit")) {
-	    type = Type.rewardFruit;
-	  } else {
+    JSONParser parser = new JSONParser();
+    JSONObject jo = (JSONObject) parser.parse(new FileReader(new File("").getAbsolutePath()
+        + "\\src\\main\\java\\com\\iluwatar\\typeobject\\candy.json"));
+    JSONArray a = (JSONArray) jo.get("candies");
+    for (Object o : a) {
+      JSONObject candy = (JSONObject) o;
+      String name = (String) candy.get("name");
+      String parentName = (String) candy.get("parent");
+      String t = (String) candy.get("type");
+      Type type = null;
+      if (t.equals("rewardFruit")) {
+        type = Type.rewardFruit;
+      } else {
         type = Type.crushableCandy;
-	  }
-	  int points = Integer.parseInt((String) candy.get("points"));
-	  Candy c = new Candy(name, parentName, type, points);  
-	  this.candies.put(name, c);
+      }
+      int points = Integer.parseInt((String) candy.get("points"));
+      Candy c = new Candy(name, parentName, type, points);
+      this.candies.put(name, c);
     }
-	setParentAndPoints();
+    setParentAndPoints();
   }
   
   void setParentAndPoints() {

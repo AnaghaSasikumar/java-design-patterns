@@ -35,13 +35,13 @@ public class Cell {
   int xIndex;
   int yIndex;
   
-  Cell(Candy candy, int xIndex, int yIndex){
+  Cell(Candy candy, int xIndex, int yIndex) {
     this.candy = candy;
     this.xIndex = xIndex;
     this.yIndex = yIndex;
   }
   
-  Cell(){
+  Cell() {
     this.candy = null;
     this.xIndex = 0;
     this.yIndex = 0;
@@ -55,9 +55,8 @@ public class Cell {
   
   void fillThisSpace(CellPool pool, Cell[][] cellMatrix) {
     for (int y = this.yIndex; y > 0; y--) {
-      cellMatrix[y][this.xIndex] = cellMatrix[y-1][this.xIndex];
+      cellMatrix[y][this.xIndex] = cellMatrix[y - 1][this.xIndex];
       cellMatrix[y][this.xIndex].yIndex = y;
-      System.out.println(y + " " + this.xIndex + " gets cell from " + (y-1) + " " + this.xIndex + " with candy " + cellMatrix[y][this.xIndex].candy.name);
     }
     Cell newC = pool.getNewCell();
     cellMatrix[0][this.xIndex] = newC;
@@ -78,8 +77,7 @@ public class Cell {
   int interact(Cell c, CellPool pool, Cell[][] cellMatrix) {
     if (this.candy.getType().equals(Type.rewardFruit) || c.candy.getType().equals(Type.rewardFruit)) {
       return 0;
-    }
-    else {
+    } else {
       if (this.candy.name.equals(c.candy.name)) {
         int pointsWon = this.candy.getPoints() + c.candy.getPoints();
         handleCrush(c,pool,cellMatrix);

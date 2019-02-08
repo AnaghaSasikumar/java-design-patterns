@@ -41,8 +41,8 @@ class CellPoolTest {
     CellPool cp = new CellPool(10);
     Hashtable<String, Boolean> ht = new Hashtable<String, Boolean>();
     int parentTypes = 0;
-    for (int i=0; i<cp.randomCode.length; i++) {
-      if (ht.get(cp.randomCode[i].name)==null) {
+    for (int i = 0; i < cp.randomCode.length; i++) {
+      if (ht.get(cp.randomCode[i].name) == null) {
         ht.put(cp.randomCode[i].name, true);
       }
       if (cp.randomCode[i].name.equals("fruit") || cp.randomCode[i].name.equals("candy")) {

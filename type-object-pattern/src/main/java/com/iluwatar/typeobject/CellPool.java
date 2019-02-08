@@ -42,7 +42,7 @@ public class CellPool {
   int pointer;
   Candy[] randomCode;
   
-  CellPool(int num) throws FileNotFoundException, IOException, ParseException{
+  CellPool(int num) throws FileNotFoundException, IOException, ParseException {
     this.pool = new ArrayList<Cell>(num);
     this.randomCode = assignRandomCandytypes();
     for (int i = 0; i < num; i++) {
@@ -51,7 +51,7 @@ public class CellPool {
       c.candy = randomCode[rand.nextInt(randomCode.length)];
       this.pool.add(c);
     }
-    this.pointer = num-1;
+    this.pointer = num - 1;
   }
   
   Cell getNewCell() {
@@ -70,16 +70,16 @@ public class CellPool {
   Candy[] assignRandomCandytypes() throws FileNotFoundException, IOException, ParseException {
     JsonParser jp = new JsonParser();
     jp.parse();
-	Candy[] randomCode = new Candy[jp.candies.size() - 2]; //exclude generic types 'fruit' and 'candy'
-	int i = 0;
-	for (Enumeration<String> e = jp.candies.keys(); e.hasMoreElements();) {
-	  String s = e.nextElement();
-	  if (!s.equals("fruit") && !s.equals("candy")) {
-	    //not generic
-	    randomCode[i] = jp.candies.get(s);
-	    i++;
-	  }
-	}
-	return randomCode;
+    Candy[] randomCode = new Candy[jp.candies.size() - 2]; //exclude generic types 'fruit' and 'candy'
+    int i = 0;
+    for (Enumeration<String> e = jp.candies.keys(); e.hasMoreElements();) {
+      String s = e.nextElement();
+      if (!s.equals("fruit") && !s.equals("candy")) {
+        //not generic
+        randomCode[i] = jp.candies.get(s);
+        i++;
+      }
+    }
+    return randomCode;
   }
 }
