@@ -23,7 +23,7 @@
 
 package com.iluwatar.typeobject;
 
-import static org.junit.jupiter.api.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.json.simple.parser.ParseException;
